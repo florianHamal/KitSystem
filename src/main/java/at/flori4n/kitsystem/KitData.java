@@ -1,8 +1,12 @@
 package at.flori4n.kitsystem;
 
 
+import org.apache.commons.lang.ObjectUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,28 +18,43 @@ public class KitData {
     private List<Kit> kits = new ArrayList<>();
 
 
-
     private KitData(){
 
     }
 
     private void readConf(){
         FileConfiguration config = KitSystem.getPlugin().getConfig();
-        ConfigurationSection s = config.getConfigurationSection("kits");
+        ConfigurationSection kitsSelection = config.getConfigurationSection("kits");
+        for (String s:kitsSelection.getKeys(false)){
+            ConfigurationSection kitSelection = kitsSelection.getConfigurationSection(s);
+            Kit kit = new Kit(kitSelection.getName());
+            //kit.setLocations((List<Location>) kitSelection.getList("locations"));
+            //Bukkit.createInventory(null,kit.getName());
+        }
+
+
     }
-    private void writeConf(){
+    public void writeConf(){
         FileConfiguration config = KitSystem.getPlugin().getConfig();
         ConfigurationSection kitSection = config.createSection("kits");
         for (Kit kit : kits){
-            kitSection.set("name",kit.getKitName());
-            kitSection.set("locations",kit.getKitLocations());
-            kitSection.set("items",kit.getItems());
+            kitSection.set("name",kit.getName());
+            kitSection.set("locations",kit.getLocations());
+            kitSection.set("items",kit.getInvContents());
+            kitSection.set("amor",kit.getAmorContents());
+
         }
+        KitSystem.getPlugin().saveConfig();
     }
 
+    public void addKit(Kit kit){
+        kits.add(kit);
+    }
+    public Kit getKitByName(String name){
+        return kits.stream().filter(k -> k.getName().equals(name)).findFirst().get();
+    }
 
-
-    private static KitData getInstance(){
+    public static KitData getInstance(){
         if (instance == null)instance = new KitData();
         return instance;
     }
