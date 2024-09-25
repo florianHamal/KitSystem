@@ -1,0 +1,3 @@
+name: KitSystem
+version: '${project.version}'
+main: at.flori4n.kitsystem.KitSystem
