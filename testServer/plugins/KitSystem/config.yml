@@ -1,0 +1,62 @@
+kits:
+  name: two
+  locations: []
+  items:
+  - ==: org.bukkit.inventory.ItemStack
+    type: DIAMOND_SWORD
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - ==: org.bukkit.inventory.ItemStack
+    type: DIAMOND_LEGGINGS
+  - ==: org.bukkit.inventory.ItemStack
+    type: DIAMOND_CHESTPLATE
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - ==: org.bukkit.inventory.ItemStack
+    type: ENCHANTED_BOOK
+    meta:
+      ==: ItemMeta
+      meta-type: ENCHANTED
+      stored-enchants:
+        PROTECTION_PROJECTILE: 4
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  - null
+  amor:
+  - ==: org.bukkit.inventory.ItemStack
+    type: DIAMOND_BOOTS
+  - ==: org.bukkit.inventory.ItemStack
+    type: AIR
+    damage: -1
+    amount: 0
+  - ==: org.bukkit.inventory.ItemStack
+    type: AIR
+    damage: -1
+    amount: 0
+  - ==: org.bukkit.inventory.ItemStack
+    type: DIAMOND_HELMET

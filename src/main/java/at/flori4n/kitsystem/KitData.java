@@ -1,15 +1,11 @@
 package at.flori4n.kitsystem;
 
 
-import org.apache.commons.lang.ObjectUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class KitData {
@@ -19,7 +15,7 @@ public class KitData {
 
 
     private KitData(){
-
+        readConf();
     }
 
     private void readConf(){
@@ -28,11 +24,9 @@ public class KitData {
         for (String s:kitsSelection.getKeys(false)){
             ConfigurationSection kitSelection = kitsSelection.getConfigurationSection(s);
             Kit kit = new Kit(kitSelection.getName());
-            //kit.setLocations((List<Location>) kitSelection.getList("locations"));
-            //Bukkit.createInventory(null,kit.getName());
+            kit.setArmorContents((ItemStack[]) kitSelection.get("armor"));
+            kit.setInvContents((ItemStack[]) kitSelection.get("items"));
         }
-
-
     }
     public void writeConf(){
         FileConfiguration config = KitSystem.getPlugin().getConfig();
@@ -41,7 +35,7 @@ public class KitData {
             kitSection.set("name",kit.getName());
             kitSection.set("locations",kit.getLocations());
             kitSection.set("items",kit.getInvContents());
-            kitSection.set("amor",kit.getAmorContents());
+            kitSection.set("armor",kit.getArmorContents());
 
         }
         KitSystem.getPlugin().saveConfig();

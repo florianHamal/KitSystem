@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 public class Commands implements CommandExecutor {
     @Override
@@ -13,9 +12,11 @@ public class Commands implements CommandExecutor {
         Player  player = (Player) commandSender;
         switch (strings[0]){
             case "addKit":
-                kitData.addKit(
-                        new Kit(strings[1],player.getInventory())
-                );
+                Kit kit = new Kit(strings[1]);
+                kit.setInvContents(player.getInventory().getContents());
+                kit.setArmorContents(player.getInventory().getArmorContents());
+                kitData.addKit(kit);
+
                 break;
             case "addKitLocation":
                 kitData.getKitByName(strings[1]).addLocation(player.getLocation());
