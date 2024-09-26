@@ -15,10 +15,9 @@ public class Listeners implements Listener {
 
     @EventHandler
     public void onPlayerInteractEntity(EntityDamageByEntityEvent e) {
-        System.out.println("listenTest1");
         if (!e.getEntity().hasMetadata("flori4n.kit"))return;
-        if (!(e.getDamager() instanceof Player)) return;
         e.setCancelled(true);
+        if (!(e.getDamager() instanceof Player)) return;
         Player p = (Player) e.getDamager();
         Kit kit = kitData.getKitByName(e.getEntity().getCustomName());
         kitData.addPlayerToKit(p,kit);
