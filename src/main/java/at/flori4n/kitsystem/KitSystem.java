@@ -10,13 +10,15 @@ public final class KitSystem extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        Bukkit.getPluginManager().registerEvents(new Listeners(),this);
         getCommand("kits").setExecutor(new Commands());
-        // Plugin startup logic
+        KitData.getInstance().getKits().forEach(Kit::spawnArmorStands);
+
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        KitData.getInstance().getKits().forEach(Kit::armorStandCleanup);
     }
     public static KitSystem getPlugin(){
         return instance;
