@@ -47,7 +47,7 @@ public class Commands implements CommandExecutor {
                     kit = kitData.getKitByName(strings[1]);
                     kit.setInvContents(player.getInventory().getContents());
                     kit.setArmorContents(player.getInventory().getArmorContents());
-                    kitData.addKit(kit);
+                    //kitData.addKit(kit);
                     break;
                 default:
                     player.sendMessage("wrong Command");
